@@ -4,13 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 
 export default function ChannelInfo({ id, name }) {
   const { youtube } = useYoutubeApi();
-  const {
-    isLoading,
-    error,
-    data: url,
-  } = useQuery(["channel", id], () => youtube.channelImageURL(id), {
-    staleTime: 1000 * 60 * 5,
-  });
+  const { data: url } = useQuery(
+    ["channel", id],
+    () => youtube.channelImageURL(id),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  );
   // url을 가져오지 못하면 채널의 앞 글자를 딴 동그란 아이콘으로 대체하는 것 해 보기
 
   return (
